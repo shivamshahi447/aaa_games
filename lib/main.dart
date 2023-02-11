@@ -1,4 +1,8 @@
+import 'dart:ffi';
+
+import 'package:aaa_games/list_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,6 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+      ),
       title: 'Hello World Demo Application',
       home: MyHomePage(),
     );
@@ -18,24 +25,42 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('aaa games'),
+        backgroundColor: const Color.fromARGB(106, 214, 78, 0),
+        title: Text(
+          'Odyssey',
+          style: GoogleFonts.unifrakturCook(
+            fontSize: 40,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
-                "https://www.yugatech.com/wp-content/uploads/2021/08/FT.png"),
+            Container(
+              height: 250,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                image: const DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    'assets/images/header_image.webp',
+                  ),
+                ),
+              ),
+            ),
             const SizedBox(
               height: 10,
             ),
-            const Text(
+            Text(
               "Category",
-              style: TextStyle(
+              style: GoogleFonts.merriweather(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -44,47 +69,73 @@ class MyHomePage extends StatelessWidget {
               height: 10,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Stack(
-                  children: [
-                    Container(
-                      height: 120,
-                      width: 150,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: const DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                            'https://cdn.mos.cms.futurecdn.net/hH6Fn5kUuz4UtnEDeBgCfc-1200-80.jpg.webp',
+                InkWell(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => ListScreen(
+                        gameGenre: 'Action',
+                      ),
+                    ),
+                  ),
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: const DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                              'https://cdn.mos.cms.futurecdn.net/hH6Fn5kUuz4UtnEDeBgCfc-1200-80.jpg.webp',
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Text(
+                      Text(
                         'Action',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 const SizedBox(
-                  width: 60,
+                  width: 50,
                 ),
-                Container(
-                  height: 120,
-                  width: 150,
-                  decoration: const BoxDecoration(),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      "https://www.yugatech.com/wp-content/uploads/2021/08/FT.png",
-                      fit: BoxFit.fill,
+                InkWell(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => ListScreen(gameGenre: 'Adventure'),
                     ),
+                  ),
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 150,
+                        decoration: const BoxDecoration(),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            "https://cdn.mos.cms.futurecdn.net/A9faYGKfj6grQx8SwEQxUg-1200-80.jpg.webp",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Adventuer',
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      )
+                    ],
                   ),
                 ),
               ],
@@ -95,45 +146,81 @@ class MyHomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Stack(
-                  children: [
-                    const Text(
-                      'Hello',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                InkWell(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const ListScreen(
+                        gameGenre: 'Horror',
                       ),
                     ),
-                    Container(
-                      height: 120,
-                      width: 150,
-                      decoration: const BoxDecoration(),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            "https://www.yugatech.com/wp-content/uploads/2021/08/FT.png",
-                            fit: BoxFit.fill,
-                          )),
-                    ),
-                  ],
+                  ),
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      Container(
+                        height: 120,
+                        width: 150,
+                        decoration: const BoxDecoration(),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              "https://cdn.mos.cms.futurecdn.net/A9faYGKfj6grQx8SwEQxUg-1200-80.jpg.webp",
+                              fit: BoxFit.fill,
+                            )),
+                      ),
+                      const Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Text(
+                          'Horror',
+                          style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   width: 60,
                 ),
-                Container(
-                  height: 120,
-                  width: 150,
-                  decoration: const BoxDecoration(),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      "https://www.yugatech.com/wp-content/uploads/2021/08/FT.png",
-                      fit: BoxFit.fill,
+                InkWell(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => ListScreen(
+                        gameGenre: 'War',
+                      ),
+                    ),
+                  ),
+                  child: Container(
+                    height: 120,
+                    width: 150,
+                    decoration: const BoxDecoration(),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        "https://cdn.mos.cms.futurecdn.net/A9faYGKfj6grQx8SwEQxUg-1200-80.jpg.webp",
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                InkWell(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ListScreen(gameGenre: 'war'),
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

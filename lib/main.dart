@@ -1,4 +1,5 @@
-import 'package:aaa_games/list_screen.dart';
+import 'package:aaa_games/widgets/category_button.dart';
+import 'package:aaa_games/widgets/header_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -40,266 +41,82 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 250,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    image: const DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(
-                        'assets/images/header_image.webp',
-                      ),
-                    ),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeaderImageWidget(
+                  headerImageUrl: 'assets/images/header_image.webp'),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Category",
+                style: GoogleFonts.merriweather(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CategoryButton(
+                    categoryName: 'Action',
+                    imgUrl: 'assets/images/action.jpg',
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Category",
-                  style: GoogleFonts.merriweather(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.1,
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const ListScreen(
-                            gameGenre: 'Action',
-                          ),
-                        ),
-                      ),
-                      child: Stack(
-                        alignment: AlignmentDirectional.center,
-                        children: [
-                          Container(
-                            height: 120,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(
-                                  'assets/images/action.jpg',
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Text(
-                            'Action',
-                            style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 50,
-                    ),
-                    InkWell(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) =>
-                              const ListScreen(gameGenre: 'Adventure'),
-                        ),
-                      ),
-                      child: Stack(
-                        alignment: AlignmentDirectional.center,
-                        children: [
-                          Container(
-                            height: 120,
-                            width: 150,
-                            decoration: const BoxDecoration(),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                "assets/images/adventure.jpg",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          const Text(
-                            'Adventure',
-                            style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const ListScreen(
-                            gameGenre: 'Horror',
-                          ),
-                        ),
-                      ),
-                      child: Stack(
-                        alignment: AlignmentDirectional.center,
-                        children: [
-                          Container(
-                            height: 120,
-                            width: 150,
-                            decoration: const BoxDecoration(),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                "assets/images/horror.jpg",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          const Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Text(
-                              'Horror',
-                              style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 50,
-                    ),
-                    InkWell(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const ListScreen(
-                            gameGenre: 'War',
-                          ),
-                        ),
-                      ),
-                      child: Stack(
-                        alignment: AlignmentDirectional.center,
-                        children: [
-                          Container(
-                            height: 120,
-                            width: 150,
-                            decoration: const BoxDecoration(),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.asset(
-                                "assets/images/war.jpg",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                          const Text(
-                            'War',
-                            style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            const ListScreen(gameGenre: 'Sport'),
-                      )),
-                      child: Stack(
-                        alignment: AlignmentDirectional.center,
-                        children: [
-                          Container(
-                            height: 120,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage('assets/images/sport.webp'),
-                              ),
-                            ),
-                          ),
-                          const Text('Sport',
-                              style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white))
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 50,
-                    ),
-                    InkWell(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) =>
-                              const ListScreen(gameGenre: 'Open World'),
-                        ),
-                      ),
-                      child: Stack(
-                        alignment: AlignmentDirectional.center,
-                        children: [
-                          Container(
-                            height: 120,
-                            width: 150,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                fit: BoxFit.cover,
-                                image:
-                                    AssetImage('assets/images/open_world.webp'),
-                              ),
-                            ),
-                          ),
-                          const Text(
-                            'Open World',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
+                  const CategoryButton(
+                    categoryName: 'Adventure',
+                    imgUrl: 'assets/images/adventure.jpg',
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.width * 0.02,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CategoryButton(
+                    categoryName: 'Horror',
+                    imgUrl: 'assets/images/horror.jpg',
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.1,
+                  ),
+                  const CategoryButton(
+                    categoryName: 'War',
+                    imgUrl: 'assets/images/war.jpg',
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CategoryButton(
+                    categoryName: 'Sport',
+                    imgUrl: 'assets/images/sport.webp',
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.1,
+                  ),
+                  const CategoryButton(
+                    categoryName: 'Open World',
+                    imgUrl: 'assets/images/open_world.webp',
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),

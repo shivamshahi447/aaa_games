@@ -1,8 +1,9 @@
+import 'package:aaa_games/model/game.dart';
 import 'package:flutter/material.dart';
 
 import '../list_screen.dart';
 
-class CategoryButton extends StatelessWidget {
+class CategoryButton extends StatefulWidget {
   final String categoryName;
   final String imgUrl;
   const CategoryButton({
@@ -12,13 +13,34 @@ class CategoryButton extends StatelessWidget {
   });
 
   @override
+  State<CategoryButton> createState() => _CategoryButtonState();
+}
+
+class _CategoryButtonState extends State<CategoryButton> {
+  List<Game> _game = [
+    Game(
+      gameTitle: 'GTA',
+      gameImage:
+          'https://cdn.cloudflare.steamstatic.com/steam/apps/271590/capsule_616x353.jpg?t=1671485100',
+      gameRating: '8',
+    ),
+    Game(
+        gameTitle: 'pubg',
+        gameImage: 'https://wallpapers.com/pubg-thumbnail',
+        gameRating: '9'),
+    Game(gameTitle: 'call of duty', gameImage: 'image.png', gameRating: '10'),
+  ];
+
+  //  List<String> gameList = [
+  @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => ListScreen(
-            gameGenre: categoryName,
-            headerImageLink: imgUrl,
+            gameGenre: widget.categoryName,
+            headerImageLink: widget.imgUrl,
+            listOfGames: _game,
           ),
         ),
       ),
@@ -33,15 +55,15 @@ class CategoryButton extends StatelessWidget {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage(
-                  imgUrl,
+                  widget.imgUrl,
                 ),
               ),
             ),
           ),
           Text(
-            '$categoryName >',
+            '${widget.categoryName} >',
             style: const TextStyle(
-                fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ],
       ),

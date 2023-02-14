@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 class ListScreen extends StatelessWidget {
   final String gameGenre;
   final String headerImageLink;
+  final List listOfGames;
 
-  const ListScreen(
-      {super.key, required this.gameGenre, required this.headerImageLink});
+  const ListScreen({
+    super.key,
+    required this.gameGenre,
+    required this.headerImageLink,
+    required this.listOfGames,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,48 +31,21 @@ class ListScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Container(
-              height: 130,
-              width: double.infinity,
-              decoration: const BoxDecoration(),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  headerImageLink,
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 130,
-              width: double.infinity,
-              decoration: const BoxDecoration(),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  headerImageLink,
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 130,
-              width: double.infinity,
-              decoration: const BoxDecoration(),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  headerImageLink,
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: listOfGames.length,
+              itemBuilder: (
+                BuildContext context,
+                int index,
+              ) {
+                return Card(
+                  child: ListTile(
+                    leading: Icon(Icons.play_arrow_rounded),
+                    title: Text(listOfGames[index]),
+                  ),
+                );
+              },
+            )
           ],
         ),
       ),

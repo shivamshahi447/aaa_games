@@ -17,14 +17,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       title: 'Hello World Demo Application',
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +45,7 @@ class MyHomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HeaderImageWidget(
+              const HeaderImageWidget(
                   headerImageUrl: 'assets/images/header_image.webp'),
               const SizedBox(
                 height: 10,

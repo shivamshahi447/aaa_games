@@ -40,8 +40,13 @@ class ListScreen extends StatelessWidget {
               ) {
                 return Card(
                   child: ListTile(
-                    leading: Icon(Icons.play_arrow_rounded),
-                    title: Text(listOfGames[index]),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        listOfGames[index].gameImage,
+                      ),
+                    ),
+                    title: Text(listOfGames[index].gameTitle),
+                    subtitle: Text('Rating ${listOfGames[index].gameRating}'),
                   ),
                 );
               },
